@@ -2,7 +2,6 @@ body {
   background-color: #e6e6fabb;
 }
 
-// картки
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -28,8 +27,6 @@ body {
   display: flex;
   gap: 10px;
 }
-
-// форма
 
 .search-form input[type='text'] {
   display: flex;
