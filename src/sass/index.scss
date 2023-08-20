@@ -1,2 +1,61 @@
 @import './common';
 @import './example';
+body {
+  background-color: #e6e6fabb;
+}
+
+// картки
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.photo-card {
+  display: flex;
+  box-sizing: border-box;
+  flex-basis: calc(25% - 20px);
+  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-img {
+  max-width: 300px;
+}
+
+.info {
+  display: flex;
+  gap: 10px;
+}
+
+// форма
+
+.search-form input[type='text'] {
+  display: flex;
+  margin: 24px auto 24px auto;
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-form button {
+  display: flex;
+  margin: -12px auto 12px auto;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+  background-color: #0056b3;
+}
