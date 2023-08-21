@@ -1,11 +1,8 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import axios from 'axios';
 import { createMarkup } from './js/markup';
-
-const BASE_URL = 'https://pixabay.com/api/';
-const API_KEY = '38920750-ce35b8fd2527c3f11d87386ea';
+import { getPhotos } from './js/getPhotos';
 
 const gallery = document.querySelector('.gallery');
 const searchForm = document.querySelector('.search-form');
@@ -35,29 +32,21 @@ async function onFormSubmit(e) {
     requestWord = searchQuery;
 
     const response = await getPhotos(requestWord, currentPage);
+
+    if (response.data.totalHits === 0) {
+      Notify.warning(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+
+      e.target.elements.searchQuery.value = '';
+
+      return;
+    }
+
     Notify.info(`Hooray! We found ${response.data.totalHits} images.`);
     updateScreen(response);
 
     e.target.elements.searchQuery.value = '';
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function getPhotos(request, page = 1) {
-  try {
-    const response = await axios.get(`${BASE_URL}?key=${API_KEY}`, {
-      params: {
-        q: request,
-        image_type: 'photo',
-        orientation: 'horizontal',
-        safesearch: 'true',
-        page: page,
-        per_page: '40',
-      },
-    });
-
-    return response;
   } catch (error) {
     console.log(error);
   }
